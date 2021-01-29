@@ -6,11 +6,29 @@ import 'package:onerecipe/utils/IconUtil.dart';
 import 'package:onerecipe/utils/Constant.dart';
 import 'package:onerecipe/utils/MediaQueryUtil.dart';
 
-class ItemRecipeView extends StatelessWidget {
+class ItemRecipeView extends StatefulWidget {
 
   final Recipe item;
 
   ItemRecipeView(this.item);
+
+  @override
+  State<StatefulWidget> createState() => ItemRecipeViewState(item);
+}
+
+class ItemRecipeViewState extends State<ItemRecipeView> {
+
+  final Recipe item;
+
+  ItemRecipeViewState(this.item);
+
+  bool isChecked;
+
+  @override
+  void initState() {
+    super.initState();
+    this.isChecked = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,10 +129,23 @@ class ItemRecipeView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Icon(
-                          Icons.favorite_outline,
-                          size: 24,
-                          color: Colors.pink,
+                        IconButton(
+                          icon: Icon(
+                            isChecked ? Icons.favorite : Icons.favorite_outline,
+                            size: 24,
+                            color: Colors.pink,
+                          ),
+                          onPressed: () => {
+                            setState(() {
+                              isChecked = !isChecked;
+                            }),
+                            Scaffold.of(context)
+                                .showSnackBar(SnackBar(
+                                content: Text(
+                                    isChecked ? 'Added to favorites' : 'Removed from favorites'
+                                )
+                            )),
+                          },
                         ),
                       ],
                     ),

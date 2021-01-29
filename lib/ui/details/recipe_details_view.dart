@@ -22,6 +22,7 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
   final Recipe recipe;
 
   int counter = 0;
+  bool isChecked = false;
 
   RecipeDetailsState(this.recipe);
 
@@ -204,10 +205,25 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
                                             )
                                           ],
                                         ),
-                                        Icon(
-                                          Icons.favorite_outline,
-                                          size: 24,
-                                          color: Colors.pink,
+                                        Expanded(
+                                          child: IconButton(
+                                            icon: Icon(
+                                              isChecked ? Icons.favorite : Icons.favorite_outline,
+                                              size: 24,
+                                              color: Colors.pink,
+                                            ),
+                                            onPressed: () => {
+                                              setState(() {
+                                                isChecked = !isChecked;
+                                              }),
+                                              Scaffold.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                  content: Text(
+                                                      isChecked ? 'Added to favorites' : 'Removed from favorites'
+                                                  )
+                                              )),
+                                            },
+                                          ),
                                         ),
                                       ],
                                     ),

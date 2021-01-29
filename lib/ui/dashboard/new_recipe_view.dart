@@ -23,7 +23,7 @@ class NewRecipeView extends StatelessWidget {
                 ),
               ),
               Text(
-                "Trending new recipes",
+                "Recent trending new delicious recipes",
                 style: TextStyle(
                   color: Colors.grey,
                   fontWeight: FontWeight.bold,
