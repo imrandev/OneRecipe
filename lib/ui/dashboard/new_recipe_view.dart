@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onerecipe/db/DbManager.dart';
 import 'package:onerecipe/model/recipe.dart';
-import 'package:onerecipe/ui/dashboard/recipes_view.dart';
+import 'package:onerecipe/ui/dashboard/recipe_list_view.dart';
 
 class NewRecipeView extends StatelessWidget {
   @override
@@ -57,7 +57,7 @@ class NewRecipeView extends StatelessWidget {
                     return recipes.isNotEmpty
                         ? Container(
                       height: itemHeight,
-                      child: RecipesView(recipes, false),
+                      child: RecipeListView(recipes, false),
                     )
                         : new Text("file is empty");
                   }

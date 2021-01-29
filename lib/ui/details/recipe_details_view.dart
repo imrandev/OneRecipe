@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:onerecipe/model/recipe.dart';
 import 'package:onerecipe/ui/widgets/animated_app_bar.dart';
 import 'package:onerecipe/utils/IconUtil.dart';
-import 'package:onerecipe/utils/constant.dart';
+import 'package:onerecipe/utils/Constant.dart';
+import 'package:onerecipe/utils/MediaQueryUtil.dart';
 
 class RecipeDetailsView extends StatefulWidget {
   final Recipe recipe;
@@ -19,6 +20,8 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
   AnimationController _colorAnimationController;
   Animation _backgroundColorTween;
   final Recipe recipe;
+
+  int counter = 0;
 
   RecipeDetailsState(this.recipe);
 
@@ -42,9 +45,9 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemWidth = size.width;
-    final double itemHeight = size.height / 2;
+
+    final double itemHeight = MediaQueryUtil().getItemWHeight(context, 2);
+    final double itemWidth = MediaQueryUtil().getItemWidth(context, 1);
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -56,7 +59,11 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
           color: Colors.white,
         ),
         backgroundColor: Colors.red,
-        onPressed: () => {},
+        onPressed: () => {
+          setState(() {
+            counter++;
+          })
+        },
       ),
       body: NotificationListener<ScrollNotification>(
         onNotification: scrollListener,
@@ -240,6 +247,7 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
                     colorTween: _backgroundColorTween,
                     isMainView: false,
                     title: recipe.title,
+                    counter: counter,
                   ),
                 ],
               ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onerecipe/db/DbManager.dart';
 import 'package:onerecipe/model/recipe.dart';
-import 'package:onerecipe/ui/dashboard/recipes_view.dart';
+import 'package:onerecipe/ui/dashboard/recipe_list_view.dart';
 import 'package:onerecipe/ui/widgets/round_button.dart';
 
 class CategoryView extends StatelessWidget {
@@ -107,7 +107,7 @@ class CategoryView extends StatelessWidget {
                     List<Recipe> recipes =
                     DbManager().parseJson(snapshot.data.toString());
                     return recipes.isNotEmpty
-                        ? RecipesView(recipes, true)
+                        ? RecipeListView(recipes, true)
                         : new Text("file is empty");
                   }
               }

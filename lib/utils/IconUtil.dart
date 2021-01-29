@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:onerecipe/utils/constant.dart';
+import 'package:onerecipe/utils/Constant.dart';
 
 class IconUtil {
   static final IconUtil _instance = IconUtil._internal();

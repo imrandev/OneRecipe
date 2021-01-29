@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onerecipe/route/ScreenNavigator.dart';
-import 'package:onerecipe/utils/constant.dart';
+import 'package:onerecipe/utils/Constant.dart';
 import 'file:///E:/Mobile/Android/Flutter/onerecipe/lib/ui/widgets/circle_image_view.dart';
 
 class AnimatedAppBar extends StatelessWidget {
@@ -10,13 +10,15 @@ class AnimatedAppBar extends StatelessWidget {
   final Animation colorTween;
   final bool isMainView;
   final String title;
+  final int counter;
 
   AnimatedAppBar(
       {@required this.colorAnimationController,
       @required this.onPressed,
       this.colorTween,
       this.isMainView,
-      this.title});
+      this.title,
+      @required this.counter});
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +77,37 @@ class AnimatedAppBar extends StatelessWidget {
                   ),
                 ),
           actions: <Widget>[
-            Icon(
-              CupertinoIcons.shopping_cart,
-              color: Colors.white,
+            new Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                new Icon(
+                  CupertinoIcons.shopping_cart,
+                  color: Colors.white,
+                ),
+                new Positioned(
+                  top: 12,
+                  right: 0,
+                  child: new Container(
+                    padding: EdgeInsets.all(1),
+                    decoration: new BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    constraints: BoxConstraints(
+                      minWidth: 12,
+                      minHeight: 12,
+                    ),
+                    child: new Text(
+                      '$counter',
+                      style: new TextStyle(
+                        color: Colors.white,
+                        fontSize: 8,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0, right: 15.0),

@@ -10,17 +10,12 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> with TickerProviderStateMixin {
 
-  // ignore: non_constant_identifier_names
-  AnimationController _ColorAnimationController;
+  AnimationController colorAnimationController;
 
-  // ignore: non_constant_identifier_names
-  AnimationController _TextAnimationController;
 
   @override
   void initState() {
-    _ColorAnimationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 0));
-    _TextAnimationController =
+    colorAnimationController =
         AnimationController(vsync: this, duration: Duration(seconds: 0));
     super.initState();
   }
@@ -43,8 +38,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               onPressed: () {
                 scaffoldKey.currentState.openDrawer();
               },
-              colorAnimationController: _ColorAnimationController,
+              colorAnimationController: colorAnimationController,
               isMainView: true,
+              counter: 0,
             ),
             DashboardView(),
           ],
