@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:onerecipe/model/recipe.dart';
+import 'package:onerecipe/ui/details/item_size_view.dart';
 import 'package:onerecipe/ui/widgets/animated_app_bar.dart';
 import 'package:onerecipe/utils/IconUtil.dart';
 import 'package:onerecipe/utils/Constant.dart';
 import 'package:onerecipe/utils/MediaQueryUtil.dart';
 
 class RecipeDetailsView extends StatefulWidget {
+
   final Recipe recipe;
 
   RecipeDetailsView(this.recipe);
@@ -56,10 +58,10 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
       floatingActionButton: FloatingActionButton(
         child: Icon(
           CupertinoIcons.cart_badge_plus,
-          size: 32,
+          size: 28,
           color: Colors.white,
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xff333637),
         onPressed: () => {
           setState(() {
             counter++;
@@ -227,7 +229,7 @@ class RecipeDetailsState extends State<RecipeDetailsView> with TickerProviderSta
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    recipe.category == 'Pizza' ? ItemSizeView("Select ${recipe.category} Size (In Inch)") : SizedBox(
                                       height: 20,
                                     ),
                                     Text(

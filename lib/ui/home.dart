@@ -12,7 +12,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
   AnimationController colorAnimationController;
 
-
   @override
   void initState() {
     colorAnimationController =
@@ -28,15 +27,31 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomPadding: false,
-      drawer: Drawer(),
       backgroundColor: Colors.white,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0, // this will be set when a new tab is tapped
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.favorite),
+            label: "Favorites",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: "Settings",
+          )
+        ],
+      ),
       body: Container(
         height: double.infinity,
         child: Column(
           children: <Widget>[
             AnimatedAppBar(
               onPressed: () {
-                scaffoldKey.currentState.openDrawer();
+
               },
               colorAnimationController: colorAnimationController,
               isMainView: true,
